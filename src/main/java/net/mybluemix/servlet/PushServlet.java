@@ -21,7 +21,7 @@ public class PushServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private static int counter = 0 ; 
     
-    private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
+    private static final String DB_DRIVER = "com.ibm.db2.jcc.DB2Driver" ;
 	private static final String DB_CONNECTION = "jdbc:db2://awh-yp-small03.services.dal.bluemix.net:50001/BLUDB:sslConnection=true;";
 	private static final String DB_USER = "dash104211";
 	private static final String DB_PASSWORD = "0oRYURuUy3rG";
