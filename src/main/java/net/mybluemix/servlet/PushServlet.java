@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/PushServlet")
 public class PushServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    private static int counter = 0 ; 
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -27,9 +27,12 @@ public class PushServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Subscribe request successful !!! ");
-		while(true)
-			response.getWriter().append("Alert : Fire close by !!! ");
+	   if(counter < 10 ){
+		   response.getWriter().append("No ");
+		   counter++;
+	   }else{
+		response.getWriter().append("Alter: There is a threat.... ");
+	   }
 	}
 
 	/**
