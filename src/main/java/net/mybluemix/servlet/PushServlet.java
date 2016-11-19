@@ -27,11 +27,16 @@ public class PushServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	   if(counter < 10 ){
+		
+	String reset = request.getParameter("r"); 
+	if (reset != null && !reset.isEmpty()){
+		counter = 0;
+	}
+	   if(counter < 6 ){
 		   response.getWriter().append("No ");
 		   counter++;
 	   }else{
-		response.getWriter().append("Alter: There is a threat.... ");
+		response.getWriter().append("Alter: There is a  fire.... ");
 	   }
 	}
 
