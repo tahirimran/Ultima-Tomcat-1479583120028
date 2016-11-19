@@ -3,6 +3,8 @@ package net.mybluemix.servlet;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -37,6 +39,7 @@ public class PushServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+	
 		
 	String reset = request.getParameter("r"); 
 	if (reset != null && !reset.isEmpty()){
@@ -48,12 +51,40 @@ public class PushServlet extends HttpServlet {
 	   }else{
 		response.getWriter().append("Alter: There is a  fire.... ");
 	   }
-	   Connection  con = getDBConnection();
-	   response.getWriter().append("Connection Successfull.... ");
+	   
+	   
+	   
+	   try {
+		response.getWriter().append("Connection Successfull.... " + dbCall());
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 	   
 
 	}
 
+	
+	private String dbCall() throws Exception{
+		
+		StringBuilder sb= new StringBuilder();
+		
+		PreparedStatement preparedStatement = null;
+		Connection  dbConnection = getDBConnection();
+		   String selectSQL = "select * from OCT_27_FIRE_SENTIMENTS;";
+		   preparedStatement = dbConnection.prepareStatement(selectSQL); 
+		   ResultSet rs = preparedStatement.executeQuery();
+		  
+			while (rs.next()) {
+
+				sb.append(" " + rs.getString(1));
+				sb.append(" " + rs.getString(2));
+
+
+			}
+			
+		return sb.toString();
+	}
 	
 	private static Connection getDBConnection() {
 
