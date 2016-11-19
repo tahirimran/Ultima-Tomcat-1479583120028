@@ -51,13 +51,13 @@ public class PushServlet extends HttpServlet {
 	   }else{
 		response.getWriter().append("Alter: There is a  fire.... ");
 	   }
-	   response.getWriter().append("getting data value");
+	   
+	   response.getWriter().append(" \n getting data value");
 	   try {
-		response.getWriter().append("Connection Successfull.... " + dbCall());
+		response.getWriter().append(" \n Connection Successfull.... " + dbCall());
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
-		e.printStackTrace();
-		response.getWriter().append(e.getMessage());
+		response.getWriter().append( "\n error " +  e.getMessage()  + " trace " + e.getStackTrace().toString());
 	}
 	   
 
