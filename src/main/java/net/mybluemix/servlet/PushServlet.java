@@ -56,8 +56,9 @@ public class PushServlet extends HttpServlet {
 	   try {
 		response.getWriter().append(" \n Connection Successfull.... " + dbCall());
 	} catch (Exception e) {
+		e.printStackTrace(response.getWriter());
 		// TODO Auto-generated catch block
-		response.getWriter().append( "\n error " +  e.getMessage()  + " trace " + e.getStackTrace().toString());
+		//response.getWriter().append( "\n error " +  e.getMessage()  + " trace " + e.getStackTrace().toString());
 	}
 	   
 
@@ -85,33 +86,20 @@ public class PushServlet extends HttpServlet {
 		return sb.toString();
 	}
 	
-	private static Connection getDBConnection() {
+	private static Connection getDBConnection()  throws Exception{
 
 		Connection dbConnection = null;
 
-		try {
+		
 
 			Class.forName(DB_DRIVER);
 
-		} catch (ClassNotFoundException e) {
-
-			System.out.println(e.getMessage());
-
-		}
-
-		try {
+		
 
 			dbConnection = DriverManager.getConnection(
                              DB_CONNECTION, DB_USER,DB_PASSWORD);
 			return dbConnection;
 
-		} catch (SQLException e) {
-
-			System.out.println(e.getMessage());
-
-		}
-
-		return dbConnection;
 
 	}
 	
